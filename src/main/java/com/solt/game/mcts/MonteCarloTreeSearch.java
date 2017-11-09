@@ -17,11 +17,11 @@ public class MonteCarloTreeSearch {
     private Simulator simulator;
 
     public MonteCarloTreeSearch(Expander expander, Simulator simulator) {
-        this(expander, simulator, 20000);
+        this(expander, simulator, 40000);
     }
 
     public MonteCarloTreeSearch(Expander expander, Simulator simulator, int numRound) {
-        this.level = 100;
+        this.level = 150;
         tree = new Tree();
         this.expander = expander;
         this.simulator = simulator;
@@ -44,7 +44,7 @@ public class MonteCarloTreeSearch {
         if (!GameUtils.equals(board, rootNode.getState().getBoard())) {
             System.err.println("ERROR");
             System.exit(1);
-        };
+        }
         int counter = 0;
         while (counter++ < numRound || System.currentTimeMillis() < end) {
             // Phase 1 - Selection
@@ -65,7 +65,7 @@ public class MonteCarloTreeSearch {
             }
             // Phase 4 - Update
             backPropogation(nodeToExplore, playoutResult);
-            System.out.println("num loop: " + counter);
+//            System.out.println("num loop: " + counter);
         }
 
         Node winnerNode = rootNode.getChildWithMaxScore();

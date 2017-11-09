@@ -11,7 +11,7 @@ public class PromisingExpander implements Expander {
 
     public PromisingExpander(AIPlayer player) {
         this.player = player;
-        childNum = 10;
+        childNum = 20;
     }
 
     @Override

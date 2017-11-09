@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NeuralSimulator implements Simulator {
-    private static int TOP_MOVE = 5;
+    private static int TOP_MOVE = 10;
     private AIPlayer aiPlayer;
 
     public NeuralSimulator(AIPlayer aiPlayer) {

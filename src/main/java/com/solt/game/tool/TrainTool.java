@@ -1,6 +1,7 @@
 package com.solt.game.tool;
 
 import com.solt.game.gomoku.Board;
+import com.solt.game.gomoku.Point;
 import com.solt.game.gomoku.SavableBoard;
 import com.solt.game.gomoku.Symbol;
 import com.solt.game.player.AIPlayer;
@@ -61,17 +62,16 @@ public class TrainTool {
     }
 
     private void play(Player player) {
-        player.nextMove().thenAccept(p -> {
-            Symbol symbol = player.getSymbol();
-            board.performMove(p, symbol);
-            System.out.println(board);
-            System.out.println("Placed " + player.getSymbol().name() + " at: " + p);
-            if (board.isGameOver()) {
-                endGame();
-            } else {
-                nextPlayer(player);
-            }
-        });
+        Point p = player.nextMove().join();
+        Symbol symbol = player.getSymbol();
+        board.performMove(p, symbol);
+        System.out.println(board);
+        System.out.println("Placed " + player.getSymbol().name() + " at: " + p);
+        if (board.isGameOver()) {
+            endGame();
+        } else {
+            nextPlayer(player);
+        }
     }
 
     private void nextPlayer(Player lastPlayer) {

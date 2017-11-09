@@ -179,6 +179,9 @@ public class Board {
     }
 
     public synchronized void resetBoard() {
+        if (isNewGame()) {
+            return;
+        }
         int size = getSize();
         for (int r = 0; r < size; ++r) {
             for (int c = 0; c < size; ++c) {
