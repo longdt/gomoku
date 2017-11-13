@@ -21,7 +21,7 @@ public class TrainTool {
     private Player whoPlayFirst;
 
     public TrainTool(boolean saveMatch) {
-        board = saveMatch ? new SavableBoard() : new Board();
+        board = new SavableBoard();
         player1 = new AlphaGomoku(board, Symbol.O, "model/neuralnet1.zip"); //already got more train here
         player2 = new MctsPlayer(board, Symbol.X);
         this.saveMatch = saveMatch;
@@ -83,10 +83,14 @@ public class TrainTool {
         try {
             if (saveMatch)
                 ((SavableBoard) board).saveMatch("matchs/games");
-            if (player1 instanceof AIPlayer)
+            if (player1 instanceof AIPlayer) {
                 ((AIPlayer) player1).learnLastMatch();
-            if (player2 instanceof AIPlayer)
+                ((AIPlayer) player1).saveModel();
+            }
+            if (player2 instanceof AIPlayer) {
                 ((AIPlayer) player2).learnLastMatch();
+                ((AIPlayer) player2).saveModel();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
