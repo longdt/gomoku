@@ -211,7 +211,7 @@ public class NeuralPlayer extends AIPlayer {
     }
 
     public synchronized void learnLastMatch() {
-        if (board.getWonPlayer() != symbol.getOpponent() || !(board instanceof SavableBoard)) {
+        if (board.getWonPlayer() == symbol || !(board instanceof SavableBoard)) {
             return;
         }
 
